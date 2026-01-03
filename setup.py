@@ -20,7 +20,7 @@ setup(
     maintainer_email='s24c1052rg@s.chibakoudai.jp',
     description='ROS 2 node for monitoring system CPU usage.',
     license='Apache-2.0',
-    tests_require=['pytest','launch_testing', 'launch_testing_ros'],
+    tests_require=['pytest', 'launch_testing', 'launch_testing_ros'],
     extras_require={
         'test': [
             'pytest',
@@ -32,4 +32,3 @@ setup(
         ],
     },
 )
-

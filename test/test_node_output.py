@@ -9,6 +9,7 @@ import launch_ros.actions
 import launch_testing.actions
 import pytest
 
+
 @pytest.mark.rostest
 def generate_test_description():
     # テスト対象のノードを起動する設定
@@ -25,6 +26,7 @@ def generate_test_description():
         ]),
         {'watchdog_node': watchdog_node}
     )
+
 
 class TestWatchdogOutput(unittest.TestCase):
     @classmethod
@@ -44,7 +46,7 @@ class TestWatchdogOutput(unittest.TestCase):
     def test_topic_output(self):
         # /cpu_usage トピックからデータが流れてくるかチェック
         msgs_received = []
-        sub = self.node.create_subscription(
+        _ = self.node.create_subscription(
             Float32,
             '/cpu_usage',
             lambda msg: msgs_received.append(msg),
@@ -59,6 +61,8 @@ class TestWatchdogOutput(unittest.TestCase):
                 break
 
         # メッセージが1つ以上受信できているか確認（入出力テスト）
-        self.assertGreaterEqual(len(msgs_received), 1, "Topic /cpu_usage did not receive any messages.")
+        self.assertGreaterEqual(
+            len(msgs_received), 1, "Topic /cpu_usage did not receive any messages."
+        )
         self.assertIsInstance(msgs_received[0].data, float)
         self.assertTrue(0.0 <= msgs_received[0].data <= 100.0)
