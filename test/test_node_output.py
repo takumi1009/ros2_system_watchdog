@@ -2,12 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import unittest
-import rclpy
-from std_msgs.msg import Float32
+
 import launch
 import launch_ros.actions
 import launch_testing.actions
 import pytest
+import rclpy
+from std_msgs.msg import Float32
 
 
 @pytest.mark.rostest
@@ -29,6 +30,7 @@ def generate_test_description():
 
 
 class TestWatchdogOutput(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         rclpy.init()
@@ -62,7 +64,7 @@ class TestWatchdogOutput(unittest.TestCase):
 
         # メッセージが1つ以上受信できているか確認（入出力テスト）
         self.assertGreaterEqual(
-            len(msgs_received), 1, "Topic /cpu_usage did not receive any messages."
+            len(msgs_received), 1, 'Topic /cpu_usage did not receive any messages.'
         )
         self.assertIsInstance(msgs_received[0].data, float)
         self.assertTrue(0.0 <= msgs_received[0].data <= 100.0)
