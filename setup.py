@@ -26,6 +26,7 @@ setup(
             'pytest',
         ],
     },
+
     entry_points={
         'console_scripts': [
             'watchdog = ros2_system_watchdog.watchdog_node:main'
